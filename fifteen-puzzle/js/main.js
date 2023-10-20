@@ -11,6 +11,20 @@ for (let y = 0; y < 4; y++) {
 board[3][3] = 0; // empty
 
 const init = () => {
+  for (let i = 0; i < 1000; i++) {
+    let from;
+    let to;
+    do {
+      from = Math.trunc(Math.random() * 15);
+      to = Math.trunc(Math.random() * 15);
+    } while (from === to);
+    [board[Math.trunc(from / 4)][from % 4], board[Math.trunc(to / 4)][to % 4]] =
+      [
+        board[Math.trunc(to / 4)][to % 4],
+        board[Math.trunc(from / 4)][from % 4],
+      ];
+  }
+
   const squareSideLength = 80;
   for (let y = 0; y < 4; y++) {
     for (let x = 0; x < 4; x++) {
