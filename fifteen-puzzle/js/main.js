@@ -1,8 +1,11 @@
 const board = [];
+const divs = [];
 for (let y = 0; y < 4; y++) {
   board[y] = [];
+  divs[y] = [];
   for (let x = 0; x < 4; x++) {
     board[y][x] = y * 4 + (x + 1);
+    divs[y][x] = null;
   }
 }
 board[3][3] = 0; // empty
@@ -27,10 +30,20 @@ const init = () => {
         alignItems: "center",
         justifyContent: "center",
       });
+      divs[y][x] = div;
+    }
+  }
+};
+
+const showBoard = () => {
+  for (let y = 0; y < 4; y++) {
+    for (let x = 0; x < 4; x++) {
+      divs[y][x].textContent = board[y][x] || "";
     }
   }
 };
 
 window.onload = () => {
   init();
+  showBoard();
 };
