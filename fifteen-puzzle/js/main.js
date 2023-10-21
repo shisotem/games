@@ -45,6 +45,9 @@ const init = () => {
         justifyContent: "center",
       });
       divs[y][x] = div;
+      div.onpointerdown = () => {
+        ondown(x, y);
+      };
     }
   }
 };
@@ -54,6 +57,18 @@ const showBoard = () => {
     for (let x = 0; x < 4; x++) {
       divs[y][x].textContent = board[y][x] || "";
     }
+  }
+};
+
+let ex = 3,
+  ey = 3;
+const ondown = (x, y) => {
+  if (Math.abs(ex - x) + Math.abs(ey - y) === 1) {
+    board[ey][ex] = board[y][x];
+    board[y][x] = 0;
+    ex = x;
+    ey = y;
+    showBoard();
   }
 };
 
