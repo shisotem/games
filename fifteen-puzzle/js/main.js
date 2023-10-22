@@ -53,9 +53,25 @@ const init = () => {
 };
 
 const showBoard = () => {
+  let clear = true;
   for (let y = 0; y < 4; y++) {
     for (let x = 0; x < 4; x++) {
       divs[y][x].textContent = board[y][x] || "";
+
+      if (x !== 3 || y !== 3) {
+        if (board[y][x] !== y * 4 + (x + 1)) {
+          clear = false;
+        }
+      }
+    }
+  }
+
+  if (clear) {
+    ex = 999;
+    for (let y = 0; y < 4; y++) {
+      for (let x = 0; x < 4; x++) {
+        divs[y][x].style.backgroundColor = "#080";
+      }
     }
   }
 };
